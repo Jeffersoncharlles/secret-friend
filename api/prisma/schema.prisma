@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id          String  @id @default(uuid())
+  status      Boolean @default(false)
+  title       String
+  description String
+  grouped     Boolean @default(false)
+
+  eventGroup EventGroup[] //um evento pode ter muitos grupo 1-n
+
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime?     @updatedAt @map("updated_at")
+  EventPeople EventPeople[] //um evento pode ter varias pessoas 1-n
+
+  @@map("events")
+}
+
+model EventGroup {
+  id      String @id @default(uuid())
+  idEvent String @map("id_event")
+  title   String
+
+  event Event? @relation(fields: [idEvent], references: [id])
+
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime?     @updatedAt @map("updated_at")
+  EventPeople EventPeople[] //um grupo de eventos pode ter varias pessoas 1-n
+
+  @@map("events_groups")
+}
+
+model EventPeople {
+  id      String @id @default(uuid())
+  idEvent String @map("id_event")
+  idGroup String @map("id_group")
+  name    String
+  cpf     String
+  matched String @default("")
+
+  event      Event?      @relation(fields: [idEvent], references: [id])
+  eventGroup EventGroup? @relation(fields: [idGroup], references: [id]) //1 pessoa so pode ter um group
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+}
