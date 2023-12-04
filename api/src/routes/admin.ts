@@ -21,6 +21,6 @@ adminRoutes.get('/hello', authenticate, (req, res) =>
 adminRoutes.get('/events', authenticate, fetchAllEventsController.handle)
 adminRoutes.get('/events/:id', authenticate, fetchEventController.handle)
 adminRoutes.post('/events', authenticate, createEventController.handle)
-adminRoutes.post('/events/:id', authenticate, editEventController.handle)
+adminRoutes.put('/events/:id', authenticate, editEventController.handle)
 
 export { adminRoutes }

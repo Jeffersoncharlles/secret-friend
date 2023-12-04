@@ -28,20 +28,6 @@ class SessionService {
 
     return response
   }
-
-  #validationToken(token: string) {
-    const currentToken = this.#createToken()
-    return token === currentToken
-  }
-
-  #createToken() {
-    const currentPassword = Intl.DateTimeFormat('pt-br')
-      .format(new Date())
-      .split('/')
-      .join('')
-
-    return env.SECRET_JWT + currentPassword
-  }
 }
 
 export { SessionService }

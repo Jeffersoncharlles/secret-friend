@@ -5,17 +5,25 @@ import { z } from 'zod'
 class EditEventController {
   async handle(req: Request, res: Response) {
     const service = new EditEventService()
-
+    const id = z.string().parse(req.params.id)
     const EditEventSchema = z.object({
-      id: z.string().uuid(),
-      title: z.string(),
-      description: z.string(),
+      title: z.string().optional(),
+      description: z.string().optional(),
       grouped: z.boolean().optional(),
+      status: z.boolean().optional(),
     })
 
-    const { title, description, grouped, id } = EditEventSchema.parse(req.body)
+    const { title, description, grouped, status } = EditEventSchema.parse(
+      req.body,
+    )
 
-    const result = await service.execute({ title, description, grouped, id })
+    const result = await service.execute({
+      title,
+      description,
+      grouped,
+      id,
+      status,
+    })
     return res.json(result)
   }
 }
