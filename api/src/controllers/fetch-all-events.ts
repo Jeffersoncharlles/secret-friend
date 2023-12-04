@@ -1,4 +1,4 @@
-import { FetchAllEventsService } from '@/services/fetch-all-events'
+import { FetchAllEventsService } from '@/services/fetch-all-events-service'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
