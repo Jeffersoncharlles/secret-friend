@@ -1,11 +1,11 @@
 import { Router } from 'express'
 import { adminRoutes } from './admin'
 import { publicRoutes } from './public'
-import { authenticate } from '@/middlewares/authenticate'
+import { reques } from '@/middlewares/req'
 
 const routes = Router()
 
-routes.all('*', authenticate)
+routes.all('*', reques)
 routes.use('/admin', adminRoutes)
 routes.use('/events', publicRoutes)
 

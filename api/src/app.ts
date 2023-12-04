@@ -1,16 +1,20 @@
-import { env } from './env/env'
-import cors from 'cors'
 import express from 'express'
+import { env } from './env/env'
+import 'express-async-errors'
+import cors from 'cors'
+
 // import https from 'https'
 import http from 'http'
 import { routes } from './routes'
+import { errorsMiddlewares } from './routes/errors'
 
 const app = express()
 
-app.use(cors())
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
+app.use(errorsMiddlewares)
 
 const runServer = (port: number, server: http.Server) => {
   server.listen(port, () => {
@@ -27,3 +31,5 @@ if (env.NODE_ENV === 'production') {
   const serverPort: number = env.PORT ?? 3333
   runServer(serverPort, regularServer)
 }
+
+// app.listen(env.PORT, () => console.log(`👍Server running at: 🚀${env.PORT}`))
