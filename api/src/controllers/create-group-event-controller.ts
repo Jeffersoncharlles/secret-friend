@@ -6,9 +6,9 @@ class CreateGroupEventController {
   async handle(req: Request, res: Response) {
     const service = new CreateGroupEventService()
     const idEvent = z.string().uuid().parse(req.params.id_events)
-    const title = z.string().uuid().parse(req.body.title)
+    const title = z.string().parse(req.body.title)
 
-    const result = await service.execute({idEvent,title})
+    const result = await service.execute({ idEvent, title })
     return res.json(result)
   }
 }

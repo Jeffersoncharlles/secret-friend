@@ -1,12 +1,7 @@
-import { NextFunction, Request, Response } from 'express'
+import { Request, Response } from 'express'
 import { AppError } from './appError'
 
-const errorsMiddlewares = (
-  err: Error,
-  request: Request,
-  response: Response,
-  next: NextFunction,
-) => {
+const errorsMiddlewares = (err: Error, _: Request, response: Response) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
       message: err.message,

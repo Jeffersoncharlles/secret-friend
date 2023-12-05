@@ -5,10 +5,6 @@
   "rules": {
     "camelcase": "off",
     "no-useless-constructor":"off",
-    "error":[
-      {
-        "printWidth":120
-      }
-    ]
+    "max-len": ["error", { "code": 120 }]
   }
 }

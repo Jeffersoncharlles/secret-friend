@@ -3,20 +3,26 @@ import { AppError } from '@/routes/errors/appError'
 
 interface ICreateGroupEvent {
   idEvent: string
-  title:string
+  title: string
 }
 
 class CreateGroupEventService {
-  async execute({ idEvent,title }: ICreateGroupEvent) {
+  async execute({ idEvent, title }: ICreateGroupEvent) {
+    if (title.length < 3) {
+      throw new AppError('Title min 3 characters!')
+    }
+
     try {
-      const groups = await prismaClient.eventGroup.create({
+      const group = await prismaClient.eventGroup.create({
         data: {
           idEvent,
           title,
-       }
+        },
       })
-
-      return { groups }
+      if (!group) {
+        throw new AppError('Invalid')
+      }
+      return { group }
     } catch (error) {
       throw new AppError('invalid')
     }
