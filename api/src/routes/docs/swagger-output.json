@@ -21,16 +21,6 @@
         }
       }
     },
-    "/admin/hello": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/admin/events": {
       "get": {
         "description": "",
@@ -66,11 +56,39 @@
           }
         }
       },
-      "post": {
+      "put": {
         "description": "",
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/events/": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/events/{id_event}/groups": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_event",
             "in": "path",
             "required": true,
             "type": "string"

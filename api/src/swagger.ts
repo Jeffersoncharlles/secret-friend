@@ -9,6 +9,7 @@ import swaggerAutogen from 'swagger-autogen'
       version: '1.0.0',
     },
     host: 'localhost:3333',
+    components: {},
   }
 
   const outputFile = './src/routes/docs/swagger-output.json'

@@ -24,11 +24,12 @@ class EditEventService {
         },
       })
 
-      if (!data) {
-        return {
-          event: {},
-        }
+      if (data.status) {
+        // TODO: Fazer o sorteio
+      } else {
+        // TODO: Limpar o sorteio
       }
+
       return { data }
     } catch (error) {
       throw new AppError('Event already exists!')
