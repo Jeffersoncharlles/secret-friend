@@ -5,7 +5,7 @@ import { z } from 'zod'
 class EditEventController {
   async handle(req: Request, res: Response) {
     const service = new EditEventService()
-    const id = z.string().parse(req.params.id)
+    const id = z.string().uuid().parse(req.params.id)
     const EditEventSchema = z.object({
       title: z.string().optional(),
       description: z.string().optional(),

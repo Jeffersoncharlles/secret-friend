@@ -19,6 +19,10 @@ class EditGroupEventService {
           title,
         },
       })
+
+      return {
+        group,
+      }
     } catch (error) {
       throw new AppError('Invalid')
     }
