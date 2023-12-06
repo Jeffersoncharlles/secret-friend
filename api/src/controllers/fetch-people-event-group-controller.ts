@@ -6,8 +6,9 @@ class FetchPeopleEventGroupController {
   async handle(req: Request, res: Response) {
     const service = new FetchPeopleEventGroupService()
     const idEvent = z.string().uuid().parse(req.params.id_events)
-    const idGroups = z.string().uuid().parse(req.params.id_groups)
-    const result = await service.execute({ idEvent, idGroups })
+    const id = z.string().uuid().parse(req.params.id)
+    const idGroup = z.string().uuid().parse(req.params.id_groups)
+    const result = await service.execute({ idEvent, idGroup, id })
     return res.json(result)
   }
 }

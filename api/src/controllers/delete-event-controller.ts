@@ -10,6 +10,9 @@ class DeleteEventController {
     // const id = z.string().parse(params)
 
     const result = await service.execute({ id })
+    if (result) {
+      return res.status(204).send()
+    }
     return res.json(result)
   }
 }

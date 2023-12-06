@@ -28,7 +28,7 @@ model EventGroup {
   idEvent String @map("id_event")
   title   String
 
-  event Event? @relation(fields: [idEvent], references: [id])
+  event Event? @relation(fields: [idEvent], references: [id], onDelete: Cascade)
 
   createdAt   DateTime      @default(now()) @map("created_at")
   updatedAt   DateTime?     @updatedAt @map("updated_at")
@@ -45,7 +45,7 @@ model EventPeople {
   cpf     String
   matched String @default("")
 
-  event      Event?      @relation(fields: [idEvent], references: [id])
+  event      Event?      @relation(fields: [idEvent], references: [id], onDelete: Cascade)
   eventGroup EventGroup? @relation(fields: [idGroup], references: [id]) //1 pessoa so pode ter um group
 
   createdAt DateTime  @default(now()) @map("created_at")

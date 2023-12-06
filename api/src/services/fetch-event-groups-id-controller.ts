@@ -9,16 +9,16 @@ interface IFetchEventGroupId {
 class FetchEventGroupIdService {
   async execute({ idEvent, id }: IFetchEventGroupId) {
     try {
-      const persons = await prismaClient.eventPeople.findMany({
+      const group = await prismaClient.eventGroup.findFirstOrThrow({
         where: {
           idEvent,
           id,
         },
       })
 
-      return { persons }
+      return { group }
     } catch (error) {
-      throw new AppError('Persons not exists')
+      throw new AppError('group not exists')
     }
   }
 }

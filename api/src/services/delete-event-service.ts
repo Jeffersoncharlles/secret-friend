@@ -7,12 +7,14 @@ interface IDeleteEvent {
 
 class DeleteEventService {
   async execute({ id }: IDeleteEvent) {
+    console.log(id)
     try {
       await prismaClient.event.delete({
         where: {
           id,
         },
       })
+      return true
     } catch (error) {
       throw new AppError('invalid')
     }

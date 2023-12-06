@@ -8,10 +8,11 @@ import { FetchEventGroupIdController } from '@/controllers/fetch-Event-Groups-Id
 import { FetchAllEventsController } from '@/controllers/fetch-all-events'
 import { FetchEventController } from '@/controllers/fetch-event'
 import { FetchEventGroupController } from '@/controllers/fetch-event-groups-controller'
-import { FetchPeopleEventGroupController } from '@/controllers/fetch-people-event-group-controller'
+import { FetchAllPeopleEventGroupController } from '@/controllers/fetch-all-people-event-group-controller'
 import { SessionController } from '@/controllers/session-controller'
 import { authenticate } from '@/middlewares/authenticate'
 import { Router } from 'express'
+import { FetchPeopleEventGroupController } from '@/controllers/fetch-people-event-group-controller'
 
 const sessionController = new SessionController()
 const fetchAllEventsController = new FetchAllEventsController()
@@ -26,6 +27,7 @@ const createGroupEvent = new CreateGroupEventController()
 const editGroupEvent = new EditGroupEventController()
 const deleteGroupEvent = new DeleteGroupEventController()
 
+const fetchAllPeopleEventGroup = new FetchAllPeopleEventGroupController()
 const fetchPeopleEventGroup = new FetchPeopleEventGroupController()
 
 const adminRoutes = Router()
@@ -66,6 +68,11 @@ adminRoutes.delete(
 
 adminRoutes.get(
   '/events/:id_events/groups/:id_groups/people',
+  authenticate,
+  fetchAllPeopleEventGroup.handle,
+)
+adminRoutes.get(
+  '/events/:id_events/groups/:id_groups/people/:id',
   authenticate,
   fetchPeopleEventGroup.handle,
 )
