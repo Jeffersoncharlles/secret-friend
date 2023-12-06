@@ -2,6 +2,7 @@ import { CreateEventController } from '@/controllers/create-event-controller'
 import { CreateGroupEventController } from '@/controllers/create-group-event-controller'
 import { DeleteEventController } from '@/controllers/delete-event-controller'
 import { EditEventController } from '@/controllers/edit-event-controller'
+import { EditGroupEventController } from '@/controllers/edit-group-event-controller'
 import { FetchEventGroupIdController } from '@/controllers/fetch-Event-Groups-Id-controller'
 import { FetchAllEventsController } from '@/controllers/fetch-all-events'
 import { FetchEventController } from '@/controllers/fetch-event'
@@ -19,6 +20,7 @@ const deleteEventController = new DeleteEventController()
 const fetchEventGroups = new FetchEventGroupController()
 const fetchEventGroupId = new FetchEventGroupIdController()
 const createGroupEvent = new CreateGroupEventController()
+const editGroupEvent = new EditGroupEventController()
 
 const adminRoutes = Router()
 
@@ -44,6 +46,11 @@ adminRoutes.post(
   '/events/:id_events/groups',
   authenticate,
   createGroupEvent.handle,
+)
+adminRoutes.put(
+  '/events/:id_events/groups/:id',
+  authenticate,
+  editGroupEvent.handle,
 )
 
 export { adminRoutes }

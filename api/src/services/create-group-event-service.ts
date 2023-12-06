@@ -13,6 +13,16 @@ class CreateGroupEventService {
     }
 
     try {
+      const event = await prismaClient.event.findFirst({
+        where: {
+          id: idEvent,
+        },
+      })
+
+      if (!event) {
+        throw new AppError('Event already exists!')
+      }
+
       const group = await prismaClient.eventGroup.create({
         data: {
           idEvent,
