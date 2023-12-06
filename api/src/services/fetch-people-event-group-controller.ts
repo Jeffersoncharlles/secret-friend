@@ -10,17 +10,22 @@ interface IFetchPeopleEventGroup {
 
 class FetchPeopleEventGroupService {
   async execute({ idEvent, idGroup, id, cpf }: IFetchPeopleEventGroup) {
+    if (!id && !cpf) {
+      throw new AppError('People not exists')
+    }
     try {
       const person = await prismaClient.eventPeople.findFirstOrThrow({
         where: {
           idEvent,
           idGroup,
+          id,
+          cpf,
         },
       })
 
       return { person }
     } catch (error) {
-      throw new AppError('Groups not exists')
+      throw new AppError('People not exists')
     }
   }
 }

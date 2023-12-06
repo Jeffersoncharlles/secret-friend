@@ -123,6 +123,28 @@
             "description": ""
           }
         }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/admin/events/{id_events}/groups": {
@@ -131,6 +153,98 @@
         "parameters": [
           {
             "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/events/{id_events}/groups/{id_groups}/people": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_groups",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_groups",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/events/{id_events}/groups/{id_groups}/people/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_events",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_groups",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"

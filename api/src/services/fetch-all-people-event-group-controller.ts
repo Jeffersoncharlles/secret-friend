@@ -27,7 +27,7 @@ class FetchAllPeopleEventGroupService {
 
       return { persons }
     } catch (error) {
-      throw new AppError('Groups not exists')
+      throw new AppError('Invalid')
     }
   }
 }

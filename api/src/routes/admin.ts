@@ -13,6 +13,7 @@ import { SessionController } from '@/controllers/session-controller'
 import { authenticate } from '@/middlewares/authenticate'
 import { Router } from 'express'
 import { FetchPeopleEventGroupController } from '@/controllers/fetch-people-event-group-controller'
+import { CreatePeopleEventGroupController } from '@/controllers/create-people-event-group-controller'
 
 const sessionController = new SessionController()
 const fetchAllEventsController = new FetchAllEventsController()
@@ -29,6 +30,7 @@ const deleteGroupEvent = new DeleteGroupEventController()
 
 const fetchAllPeopleEventGroup = new FetchAllPeopleEventGroupController()
 const fetchPeopleEventGroup = new FetchPeopleEventGroupController()
+const createPeopleEventGroup = new CreatePeopleEventGroupController()
 
 const adminRoutes = Router()
 
@@ -75,6 +77,11 @@ adminRoutes.get(
   '/events/:id_events/groups/:id_groups/people/:id',
   authenticate,
   fetchPeopleEventGroup.handle,
+)
+adminRoutes.post(
+  '/events/:id_events/groups/:id_groups/people',
+  authenticate,
+  createPeopleEventGroup.handle,
 )
 
 export { adminRoutes }
