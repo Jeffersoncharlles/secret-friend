@@ -1,3 +1,5 @@
+import { Router } from "express";
+import { authenticate } from "@/middlewares/authenticate";
 import { CreateEventController } from "@/controllers/create-event-controller";
 import { CreateGroupEventController } from "@/controllers/create-group-event-controller";
 import { DeleteEventController } from "@/controllers/delete-event-controller";
@@ -10,8 +12,6 @@ import { FetchEventController } from "@/controllers/fetch-event";
 import { FetchEventGroupController } from "@/controllers/fetch-event-groups-controller";
 import { FetchAllPeopleEventGroupController } from "@/controllers/fetch-all-people-event-group-controller";
 import { SessionController } from "@/controllers/session-controller";
-import { authenticate } from "@/middlewares/authenticate";
-import { Router } from "express";
 import { FetchPeopleEventGroupController } from "@/controllers/fetch-people-event-group-controller";
 import { CreatePeopleEventGroupController } from "@/controllers/create-people-event-group-controller";
 import { EditPeopleEventGroupController } from "@/controllers/edit-people-event-group-controller";
