@@ -1,7 +1,7 @@
-import { prismaClient } from '@/database/prisma'
+import { prismaClient } from "@/database/prisma";
 
 interface IFetchEvent {
-  id: string
+  id: string;
 }
 
 class FetchEventService {
@@ -10,16 +10,16 @@ class FetchEventService {
       where: {
         id,
       },
-    })
+    });
 
     if (data === null) {
       return {
         event: {},
-      }
+      };
     }
 
-    return { data }
+    return { data };
   }
 }
 
-export { FetchEventService }
+export { FetchEventService };

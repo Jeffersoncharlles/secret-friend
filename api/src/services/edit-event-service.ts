@@ -1,12 +1,12 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IEditEvent {
-  id: string
-  status?: boolean
-  title?: string
-  description?: string
-  grouped?: boolean
+  id: string;
+  status?: boolean;
+  title?: string;
+  description?: string;
+  grouped?: boolean;
 }
 
 class EditEventService {
@@ -22,7 +22,7 @@ class EditEventService {
           description,
           grouped,
         },
-      })
+      });
 
       if (data.status) {
         // TODO: Fazer o sorteio
@@ -30,11 +30,11 @@ class EditEventService {
         // TODO: Limpar o sorteio
       }
 
-      return { data }
+      return { data };
     } catch (error) {
-      throw new AppError('Event already exists!')
+      throw new AppError("Event already exists!");
     }
   }
 }
 
-export { EditEventService }
+export { EditEventService };

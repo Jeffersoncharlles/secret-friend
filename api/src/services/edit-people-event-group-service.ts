@@ -1,44 +1,36 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IEditPeopleEventGroup {
-  name?: string
-  idEvent: string
-  idGroup: string
-  cpf?: string
-  id: string
+  name?: string;
+  idEvent: string;
+  idGroup: string;
+  cpf?: string;
+  id: string;
+  matched?: string;
 }
 
 class EditPeopleEventGroupService {
-  async execute({ name, idEvent, idGroup, cpf, id }: IEditPeopleEventGroup) {
-    if (!name && !idEvent && !idGroup && !cpf) {
-      throw new AppError('Data Invalid!')
-    }
-
-    const group = await prismaClient.eventGroup.findFirst({
-      where: {
-        idEvent,
-        id: idGroup,
-      },
-    })
-
-    if (!group) {
-      throw new AppError('Group Invalid', 401)
+  async execute({ name, idEvent, idGroup, cpf, id, matched }: IEditPeopleEventGroup) {
+    if (!id && !idEvent) {
+      throw new AppError("Data Invalid!");
     }
 
     const person = await prismaClient.eventPeople.update({
       where: {
         id,
+        idEvent,
+        idGroup,
       },
       data: {
         cpf,
         name,
         idGroup,
       },
-    })
+    });
 
-    return { person }
+    return { person };
   }
 }
 
-export { EditPeopleEventGroupService }
+export { EditPeopleEventGroupService };

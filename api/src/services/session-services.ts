@@ -1,33 +1,30 @@
-import { env } from '@/env/env'
-import { AppError } from '@/routes/errors/appError'
+import { env } from "@/env/env";
+import { AppError } from "@/routes/errors/appError";
 
 interface ISession {
-  password: string
+  password: string;
 }
 
 class SessionService {
   async execute({ password }: ISession) {
     if (!password) {
-      throw new AppError('Error not authorization')
+      throw new AppError("Error not authorization");
     }
 
-    const currentPassword = Intl.DateTimeFormat('pt-br')
-      .format(new Date())
-      .split('/')
-      .join('')
+    const currentPassword = Intl.DateTimeFormat("pt-br").format(new Date()).split("/").join("");
 
-    const validate = password === currentPassword
+    const validate = password === currentPassword;
 
     if (!validate) {
-      throw new AppError('Error not authorization', 401)
+      throw new AppError("Error not authorization", 401);
     }
 
     const response = {
       token: `${env.SECRET_JWT}${currentPassword}`,
-    }
+    };
 
-    return response
+    return response;
   }
 }
 
-export { SessionService }
+export { SessionService };

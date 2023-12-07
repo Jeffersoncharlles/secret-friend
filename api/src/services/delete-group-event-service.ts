@@ -1,9 +1,9 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IDeleteGroupEvent {
-  id: string
-  idEvent?: string
+  id: string;
+  idEvent?: string;
 }
 
 class DeleteGroupEventService {
@@ -14,11 +14,11 @@ class DeleteGroupEventService {
           id,
           idEvent,
         },
-      })
+      });
     } catch (error) {
-      throw new AppError('invalid')
+      throw new AppError("invalid");
     }
   }
 }
 
-export { DeleteGroupEventService }
+export { DeleteGroupEventService };

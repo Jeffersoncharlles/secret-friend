@@ -1,26 +1,26 @@
-import swaggerAutogen from 'swagger-autogen'
+import swaggerAutogen from "swagger-autogen";
 
 ///
-;(async () => {
+(async () => {
   const genericDocumentation = {
     info: {
-      title: 'secret friend',
-      description: 'rest api secret friend event',
-      version: '1.0.0',
+      title: "secret friend",
+      description: "rest api secret friend event",
+      version: "1.0.0",
     },
-    host: 'localhost:3333',
+    host: "localhost:3333",
     components: {
       securitySchemes: {
         Authorization: {
-          type: 'http',
-          scheme: 'Token',
+          type: "http",
+          scheme: "Token",
         },
       },
     },
-  }
+  };
 
-  const outputFile = './src/routes/docs/swagger-output.json'
-  const endpointsFiles = ['src/routes/index.ts']
+  const outputFile = "./src/routes/docs/swagger-output.json";
+  const endpointsFiles = ["src/routes/index.ts"];
 
-  swaggerAutogen(outputFile, endpointsFiles, genericDocumentation)
-})()
+  swaggerAutogen(outputFile, endpointsFiles, genericDocumentation);
+})();

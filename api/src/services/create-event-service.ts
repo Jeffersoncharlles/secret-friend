@@ -1,9 +1,9 @@
-import { prismaClient } from '@/database/prisma'
+import { prismaClient } from "@/database/prisma";
 
 interface ICreateEvent {
-  title: string
-  description: string
-  grouped?: boolean
+  title: string;
+  description: string;
+  grouped?: boolean;
 }
 
 class CreateEventService {
@@ -14,16 +14,16 @@ class CreateEventService {
         description,
         grouped,
       },
-    })
+    });
 
     if (!data) {
       return {
         event: {},
-      }
+      };
     }
 
-    return { data }
+    return { data };
   }
 }
 
-export { CreateEventService }
+export { CreateEventService };

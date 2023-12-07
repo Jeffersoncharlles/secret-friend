@@ -1,8 +1,8 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IFetchEventGroup {
-  id_event: string
+  id_event: string;
 }
 
 class FetchEventGroupService {
@@ -12,13 +12,13 @@ class FetchEventGroupService {
         where: {
           idEvent: id_event,
         },
-      })
+      });
 
-      return { groups }
+      return { groups };
     } catch (error) {
-      throw new AppError('Groups not exists')
+      throw new AppError("Groups not exists");
     }
   }
 }
 
-export { FetchEventGroupService }
+export { FetchEventGroupService };

@@ -1,10 +1,10 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IEditGroupEvent {
-  idEvent: string
-  id: string
-  title?: string
+  idEvent: string;
+  id: string;
+  title?: string;
 }
 
 class EditGroupEventService {
@@ -18,15 +18,15 @@ class EditGroupEventService {
         data: {
           title,
         },
-      })
+      });
 
       return {
         group,
-      }
+      };
     } catch (error) {
-      throw new AppError('Invalid')
+      throw new AppError("Invalid");
     }
   }
 }
 
-export { EditGroupEventService }
+export { EditGroupEventService };

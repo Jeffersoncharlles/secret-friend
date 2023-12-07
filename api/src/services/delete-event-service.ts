@@ -1,24 +1,24 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IDeleteEvent {
-  id: string
+  id: string;
 }
 
 class DeleteEventService {
   async execute({ id }: IDeleteEvent) {
-    console.log(id)
+    console.log(id);
     try {
       await prismaClient.event.delete({
         where: {
           id,
         },
-      })
-      return true
+      });
+      return true;
     } catch (error) {
-      throw new AppError('invalid')
+      throw new AppError("invalid");
     }
   }
 }
 
-export { DeleteEventService }
+export { DeleteEventService };

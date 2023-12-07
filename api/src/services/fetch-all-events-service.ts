@@ -1,15 +1,15 @@
-import { prismaClient } from '@/database/prisma'
+import { prismaClient } from "@/database/prisma";
 
 class FetchAllEventsService {
   async execute() {
     try {
-      const data = await prismaClient.event.findMany()
+      const data = await prismaClient.event.findMany();
 
-      return { events: data }
+      return { events: data };
     } catch (error: any) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 }
 
-export { FetchAllEventsService }
+export { FetchAllEventsService };

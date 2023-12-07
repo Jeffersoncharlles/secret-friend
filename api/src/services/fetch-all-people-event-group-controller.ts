@@ -1,9 +1,9 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IFetchPeopleEventGroup {
-  idEvent: string
-  idGroup?: string
+  idEvent: string;
+  idGroup?: string;
 }
 
 class FetchAllPeopleEventGroupService {
@@ -23,13 +23,13 @@ class FetchAllPeopleEventGroupService {
             },
           },
         },
-      })
+      });
 
-      return { persons }
+      return { persons };
     } catch (error) {
-      throw new AppError('Invalid')
+      throw new AppError("Invalid");
     }
   }
 }
 
-export { FetchAllPeopleEventGroupService }
+export { FetchAllPeopleEventGroupService };

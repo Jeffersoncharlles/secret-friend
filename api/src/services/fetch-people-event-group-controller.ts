@@ -1,17 +1,17 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface IFetchPeopleEventGroup {
-  idEvent: string
-  idGroup?: string
-  id?: string
-  cpf?: string
+  idEvent: string;
+  idGroup?: string;
+  id?: string;
+  cpf?: string;
 }
 
 class FetchPeopleEventGroupService {
   async execute({ idEvent, idGroup, id, cpf }: IFetchPeopleEventGroup) {
     if (!id && !cpf) {
-      throw new AppError('People not exists')
+      throw new AppError("People not exists");
     }
     try {
       const person = await prismaClient.eventPeople.findFirstOrThrow({
@@ -21,13 +21,13 @@ class FetchPeopleEventGroupService {
           id,
           cpf,
         },
-      })
+      });
 
-      return { person }
+      return { person };
     } catch (error) {
-      throw new AppError('People not exists')
+      throw new AppError("People not exists");
     }
   }
 }
 
-export { FetchPeopleEventGroupService }
+export { FetchPeopleEventGroupService };

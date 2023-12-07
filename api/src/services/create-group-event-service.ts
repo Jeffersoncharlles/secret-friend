@@ -1,15 +1,15 @@
-import { prismaClient } from '@/database/prisma'
-import { AppError } from '@/routes/errors/appError'
+import { prismaClient } from "@/database/prisma";
+import { AppError } from "@/routes/errors/appError";
 
 interface ICreateGroupEvent {
-  idEvent: string
-  title: string
+  idEvent: string;
+  title: string;
 }
 
 class CreateGroupEventService {
   async execute({ idEvent, title }: ICreateGroupEvent) {
     if (title.length < 3) {
-      throw new AppError('Title min 3 characters!')
+      throw new AppError("Title min 3 characters!");
     }
 
     try {
@@ -17,10 +17,10 @@ class CreateGroupEventService {
         where: {
           id: idEvent,
         },
-      })
+      });
 
       if (!event) {
-        throw new AppError('Event already exists!')
+        throw new AppError("Event already exists!");
       }
 
       const group = await prismaClient.eventGroup.create({
@@ -28,15 +28,15 @@ class CreateGroupEventService {
           idEvent,
           title,
         },
-      })
+      });
       if (!group) {
-        throw new AppError('Invalid')
+        throw new AppError("Invalid");
       }
-      return { group }
+      return { group };
     } catch (error) {
-      throw new AppError('invalid')
+      throw new AppError("invalid");
     }
   }
 }
 
-export { CreateGroupEventService }
+export { CreateGroupEventService };
