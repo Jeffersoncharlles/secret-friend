@@ -1,4 +1,4 @@
-import { EditPeopleEventGroupService } from "@/services/edit-people-event-group-service";
+import { EditPeopleEventGroupService } from "@/services/people/edit-people-event-group-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

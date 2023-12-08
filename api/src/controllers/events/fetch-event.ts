@@ -1,4 +1,4 @@
-import { FetchEventService } from "@/services/fetch-event-service";
+import { FetchEventService } from "@/services/events/fetch-event-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

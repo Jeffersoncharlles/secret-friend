@@ -1,4 +1,4 @@
-import { FetchAllPeopleEventGroupService } from "@/services/fetch-all-people-event-group-controller";
+import { FetchAllPeopleEventGroupService } from "@/services/people/fetch-all-people-event-group-controller";
 import { Request, Response } from "express";
 import { z } from "zod";
 

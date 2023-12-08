@@ -22,9 +22,9 @@ export const sortedPeopleList = (peopleList: People[], eventItem: eventItem): so
   let sortedList: sortedList[] = [];
   let sortable: string[] = [];
 
-  let attempts = 0;
+  let attempts = 0; // tentativa
   const maxAttempts = peopleList.length;
-  let keepTrying = true;
+  let keepTrying = true; // tentenar de novo
 
   while (keepTrying && attempts < maxAttempts) {
     keepTrying = false;
@@ -44,8 +44,7 @@ export const sortedPeopleList = (peopleList: People[], eventItem: eventItem): so
 
       if (sortableFiltered.length === 0 || (sortableFiltered.length === 1 && peopleList[i].id === sortableFiltered[0])) {
         // ou seja se nao tem mais ninguém ou e eu msm
-        keepTrying = true;
-        // faz o proximo
+        keepTrying = true; // faz o proximo
       } else {
         // aqui realmente faz o sorteio
         let sortedIndex = Math.floor(Math.random() * sortableFiltered.length);

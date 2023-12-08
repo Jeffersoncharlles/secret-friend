@@ -1,4 +1,4 @@
-import { FetchAllEventsService } from "@/services/fetch-all-events-service";
+import { FetchAllEventsService } from "@/services/events/fetch-all-events-service";
 import { Request, Response } from "express";
 
 class FetchAllEventsController {

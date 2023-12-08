@@ -1,4 +1,4 @@
-import { DeletePeopleEventGroupService } from "@/services/delete-people-event-group-service";
+import { DeletePeopleEventGroupService } from "@/services/people/delete-people-event-group-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

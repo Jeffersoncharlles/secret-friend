@@ -1,4 +1,4 @@
-import { DeleteEventService } from "@/services/delete-event-service";
+import { DeleteEventService } from "@/services/events/delete-event-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

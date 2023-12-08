@@ -1,4 +1,4 @@
-import { CreateEventService } from "@/services/create-event-service";
+import { CreateEventService } from "@/services/events/create-event-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

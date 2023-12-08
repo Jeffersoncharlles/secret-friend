@@ -1,4 +1,4 @@
-import { CreateGroupEventService } from "@/services/create-group-event-service";
+import { CreateGroupEventService } from "@/services/groups/create-group-event-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

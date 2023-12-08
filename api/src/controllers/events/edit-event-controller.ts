@@ -1,4 +1,4 @@
-import { EditEventService } from "@/services/edit-event-service";
+import { EditEventService } from "@/services/events/edit-event-service";
 import { Request, Response } from "express";
 import { z } from "zod";
 

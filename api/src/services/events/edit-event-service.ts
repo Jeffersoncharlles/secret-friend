@@ -50,13 +50,7 @@ class EditEventService {
     }
 
     if (event.status) {
-      // TODO: Fazer o sorteio
-      // const result = await prismaClient.eventPeople.updateMany({
-      //   where: {
-      //     idEvent: id,
-      //   },
-      //   data: {},
-      // });
+      // done: Fazer o sorteio
       const eventItem = await prismaClient.event.findFirst({ where: { id }, select: { grouped: true } });
 
       if (!eventItem) {
@@ -72,13 +66,12 @@ class EditEventService {
         throw new AppError("People not exists!");
       }
 
+      // fazer sorteio
       const sortableList = sortedPeopleList(peopleList, eventItem);
 
       if (!sortableList) {
         throw new AppError("Groups impossible to sort");
       }
-
-      console.log(sortableList);
 
       for (const i in sortableList) {
         await prismaClient.eventPeople.updateMany({
