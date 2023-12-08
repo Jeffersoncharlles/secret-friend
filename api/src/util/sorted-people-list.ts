@@ -1,15 +1,24 @@
-import { IPeople } from "@/@types";
+type People = {
+  id: string;
+  idEvent: string;
+  idGroup: string;
+  name: string;
+  cpf: string;
+  matched: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+};
 
 type sortedList = {
   id: string;
-  match: number;
+  match: string;
 };
 
 type eventItem = {
   grouped: boolean;
 };
 
-export const sortedPeopleList = (peopleList: IPeople[], eventItem: eventItem) => {
+export const sortedPeopleList = (peopleList: People[], eventItem: eventItem): sortedList[] | false => {
   let sortedList: sortedList[] = [];
   let sortable: string[] = [];
 
@@ -39,9 +48,26 @@ export const sortedPeopleList = (peopleList: IPeople[], eventItem: eventItem) =>
         // faz o proximo
       } else {
         // aqui realmente faz o sorteio
+        let sortedIndex = Math.floor(Math.random() * sortableFiltered.length);
+        while (sortableFiltered[sortedIndex] === peopleList[i].id) {
+          // se tirar eu mesmo faz o sorteio de novo
+          sortedIndex = Math.floor(Math.random() * sortableFiltered.length);
+        }
+        sortedList.push({
+          id: peopleList[i].id,
+          match: sortableFiltered[sortedIndex],
+        });
+
+        sortable = sortable.filter((person) => person !== sortableFiltered[sortedIndex]);
+        // filtre todos que for diferente do sorteado assim a lista de pessoas pode ser sorteadas diminui
       }
     }
   }
+
+  if (attempts < maxAttempts) {
+    return sortedList;
+  }
+
   return false;
 };
 /**

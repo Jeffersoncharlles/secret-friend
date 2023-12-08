@@ -1,5 +1,6 @@
 import { prismaClient } from "@/database/prisma";
 import { AppError } from "@/routes/errors/appError";
+import { EncryptMatch } from "@/util/encrypt-match";
 import { sortedPeopleList } from "@/util/sorted-people-list";
 import { PrismaClient } from "@prisma/client";
 
@@ -71,58 +72,25 @@ class EditEventService {
         throw new AppError("People not exists!");
       }
 
-      let sortedList: sortedList[] = [];
-      let sortable: string[] = [];
+      const sortableList = sortedPeopleList(peopleList, eventItem);
 
-      let attempts = 0;
-      const maxAttempts = peopleList.length;
-      let keepTrying = true;
-
-      while (keepTrying && attempts < maxAttempts) {
-        keepTrying = false;
-        attempts++;
-        sortedList = [];
-
-        sortable = peopleList.map((people) => people.id);
-
-        for (const i in peopleList) {
-          let sortableFiltered: string[] = sortable;
-          if (eventItem.grouped) {
-            sortableFiltered = sortable.filter((sortableId) => {
-              const sortablePerson = peopleList.find((person) => person.id === sortableId);
-              return peopleList[i].idGroup !== sortablePerson?.idGroup; // tem que ser diferente
-            });
-          }
-
-          if (sortableFiltered.length === 0 || (sortableFiltered.length === 1 && peopleList[i].id === sortableFiltered[0])) {
-            // ou seja se nao tem mais ninguém ou e eu msm
-            keepTrying = true;
-            // faz o proximo
-          } else {
-            // aqui realmente faz o sorteio
-          }
-        }
+      if (!sortableList) {
+        throw new AppError("Groups impossible to sort");
       }
 
-      // if (attempts < maxAttempts) {
-      //   for (const i in sortedList) {
-      //     await prismaClient.eventPeople.update({
-      //       where: {
-      //         id: sortedList[i].id,
-      //         idEvent: id,
-      //       },
-      //       data: {
-      //         matched: "", // TODO: Criar encryptMatch()
-      //       },
-      //     });
-      //   }
-      // }
+      console.log(sortableList);
 
-      // const result = sortedPeopleList(peopleList);
-
-      // if (!result) {
-      //   throw new AppError("Groups impossible to sort");
-      // }
+      for (const i in sortableList) {
+        await prismaClient.eventPeople.updateMany({
+          where: {
+            id: sortableList[i].id,
+            idEvent: id,
+          },
+          data: {
+            matched: EncryptMatch.encryptMatch(sortableList[i].match),
+          },
+        });
+      }
     } else {
       // done : Limpar o sorteio
       await prismaClient.eventPeople.updateMany({
