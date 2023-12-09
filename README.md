@@ -78,7 +78,7 @@ Feel free to bring new features or fix problems, it will be a pleasure! 💜
 [git]: https://git-scm.com
 [fauna]: https://fauna.com/
 [yarn]: https://yarnpkg.com/
-[license]: ./LICENSE
+[license]: LICENSE
 [linkedin]: https://www.linkedin.com/in/jeffersoncharlles/
 
 ## 🔗 Links

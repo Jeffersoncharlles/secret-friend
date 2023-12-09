@@ -2,7 +2,6 @@ import { prismaClient } from "@/database/prisma";
 import { AppError } from "@/routes/errors/appError";
 import { EncryptMatch } from "@/util/encrypt-match";
 import { sortedPeopleList } from "@/util/sorted-people-list";
-import { PrismaClient } from "@prisma/client";
 
 interface IEditEvent {
   id: string;
@@ -16,20 +15,6 @@ type sortedList = {
   id: string;
   match: number;
 };
-
-/**
- *  Grupo A
- *  - Jefferson
- *  - Pedro
- *  - Carlinha
- *
- * Grupo B
- *  - Jeneffer
- *  - Maria
- *
- * Grupo C
- *  - Fabrício
- */
 
 class EditEventService {
   async execute({ title, description, grouped, id, status }: IEditEvent) {
