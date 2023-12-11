@@ -9,7 +9,9 @@
     "start": "node build/app.js",
     "generation": "tsx ./src/swagger.ts",
     "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix"
+    "lint:fix": "eslint src --ext .ts --fix",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy"
   },
   "engines": {
     "node": "20"

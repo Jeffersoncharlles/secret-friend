@@ -2,8 +2,9 @@ import express from "express";
 import { env } from "./env/env";
 import "express-async-errors";
 import cors from "cors";
+import fs from "fs";
 
-// import https from 'https'
+import https from "https";
 import http from "http";
 import { routes } from "./routes";
 import { errorsMiddlewares } from "./routes/errors";
@@ -25,8 +26,17 @@ const runServer = (port: number, server: http.Server) => {
 const regularServer = http.createServer(app);
 
 if (env.NODE_ENV === "production") {
-  // TODO: configurar SSL
-  // TODO: rodar server na 80 e na 443
+  // done: configurar SSL
+  // done: rodar server na 80 e na 443
+
+  const options = {
+    key: fs.readFileSync(env.SSL_KEY),
+    cert: fs.readFileSync(env.SSl_CERT),
+  };
+  const secServer = https.createServer(options, app);
+
+  runServer(80, regularServer);
+  runServer(443, secServer);
 } else {
   const serverPort: number = env.PORT ?? 3333;
   runServer(serverPort, regularServer);
