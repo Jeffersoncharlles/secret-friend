@@ -24,6 +24,13 @@ yarn dev
 
 ## 🚀 Technologies:
 
+This Front-End project was developed using the following technologies:
+
+- [Typescript][typescript]
+- [Next Js][nextjs]
+- [Ui Shadcn][shadcn]
+- [Tailwind css][tailwindcss]
+
 This Back-End project was developed using the following technologies:
 
 - [Typescript][typescript]
@@ -45,6 +52,7 @@ Feel free to bring new features or fix problems, it will be a pleasure! 💜
 
 [typescript]: https://www.typescriptlang.org/
 [fastify]: https://www.fastify.io/
+[shadcn]: https://ui.shadcn.com/
 [expressjs]: https://expressjs.com/
 [supertest]: https://www.npmjs.com/package/supertest
 [tsup]: https://tsup.egoist.dev/
