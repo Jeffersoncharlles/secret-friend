@@ -14,7 +14,11 @@ export const FetchEvent = async (id:string): Promise<Event | false> => {
 
 export const searchCPF =async (eventId:string, cpf:string): Promise<SearchResult | false> => {
 
-  const people = await api.get(`/events/${eventId}/search?cpf=${cpf}`)
+  const people = await api.get(`/events/${eventId}/search`, {
+    params: {
+      cpf
+    }
+  })
 
   if (people.data.person && people.data.personMatched) {
     return people.data

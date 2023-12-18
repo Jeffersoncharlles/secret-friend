@@ -2,7 +2,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from "@/components/ui/separator";
 import { FetchEvent } from "@/lib/api/site";
 import { redirect } from "next/navigation";
-import SearchInput from "./searchInput";
+import Search from "./search";
+
 
 type Props = {
     params: {
@@ -33,7 +34,7 @@ export default async function  EventId({ params }: Props) {
                     {/* <p className="text-xs">{event.data.createdAt}</p> */}
                 </CardHeader>
                 <CardContent>
-                    <SearchInput id={event.data.id} />
+                    <Search id={params.id} />
                 </CardContent>
                 {/* <CardFooter>
                     <p>{event.data.createdAt}</p>
