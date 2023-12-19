@@ -14,19 +14,24 @@ interface Props {
 
 export default function SearchForm({id}:Props) {
   const [matchResult, setMatchResult] = useState<SearchResult>()
+  const [loading,setLoading] = useState(true)
   const [cpfInput, setCpfInput] = useState('')
 
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(false)
+
       const results = await searchCPF(id, cpfInput)
 
       if (results) {
         setMatchResult(results)
-        //setCpfInput('')
+        setCpfInput('')
+        setLoading(true)
         //console.log(matchResult)
       } else {
         setMatchResult(undefined)
+        setLoading(true)
       }
   }
 
@@ -54,20 +59,23 @@ export default function SearchForm({id}:Props) {
 
       </div>
       </form>
-      <div className="mb-6 h-42">
-        {matchResult && (
-          <>
-            <Confetti
-            numberOfPieces={1000}
-            recycle={false}
-            />
-            <p className="text-3xl">{matchResult?.person.name}</p>
-            <p className="text-2xl my-4">Parabéns, você tirou:</p>
-            <p className="text-5xl my-5  text-primary  font-bold border border-zinc-800 py-6 bg-zinc-900 rounded">{matchResult?.personMatched.name}</p>
-          </>
-        )}
+      {loading && (
+        <div className="mb-6 h-42">
+          {matchResult && (
+            <>
+              <Confetti
+              numberOfPieces={1000}
+              recycle={false}
+              />
+              <p className="text-3xl">{matchResult?.person.name}</p>
+              <p className="text-2xl my-4">Parabéns, você tirou:</p>
+              <p className="text-5xl my-5  text-primary  font-bold border border-zinc-800 py-6 bg-zinc-900 rounded">{matchResult?.personMatched.name}</p>
+            </>
+          )}
 
       </div>
+      )}
+
     </div>
   )
 }

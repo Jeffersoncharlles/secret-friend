@@ -30,14 +30,10 @@ export default async function  EventId({ params }: Props) {
                     <CardDescription className="text-sm  text-zinc-300/80">
                         {event.data.description}
                     </CardDescription>
-                    {/* <p className="text-xs">{event.data.createdAt}</p> */}
                 </CardHeader>
                 <CardContent>
                     <SearchForm id={params.id} />
                 </CardContent>
-                {/* <CardFooter>
-                    <p>{event.data.createdAt}</p>
-                </CardFooter> */}
             </Card>
             <footer>
                Todos os direitos reservados. Criado pelo Jeffersonc.dev
