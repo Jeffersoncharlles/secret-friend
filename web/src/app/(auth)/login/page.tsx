@@ -1,9 +1,10 @@
 
 
-export default function Login () {
+export default function Login() {
 
-    return(
+    return (
         <div>
+            <h1>Hello Login</h1>
         </div>
     );
 }

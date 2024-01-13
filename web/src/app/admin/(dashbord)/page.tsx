@@ -1,9 +1,11 @@
 
 
-export default function Dashboard () {
+export default function Dashboard() {
 
-    return(
+    return (
         <div>
+
+            <h1>Hello World</h1>
         </div>
     );
 }
