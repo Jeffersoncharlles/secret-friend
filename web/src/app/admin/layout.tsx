@@ -12,7 +12,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="mx-auto  min-h-screen w-full max-w-[1600px]  gap-5 p-8">
+    <div className=" mx-auto  min-h-screen w-full max-w-[1600px]  gap-5 p-8">
       <Header />
       <main className="border border-zinc-300 p-3 ">
         {children}
