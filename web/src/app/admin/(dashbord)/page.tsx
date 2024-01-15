@@ -1,5 +1,8 @@
-import { pingAdmin } from "@/lib/api/admin";
+
+
+import { pingAdmin } from "@/lib/api/server";
 import { redirect } from "next/navigation";
+import { AdminPage } from "./adminPage";
 
 
 export default async function Dashboard() {
@@ -9,9 +12,8 @@ export default async function Dashboard() {
     }
 
     return (
-        <div>
-
-            <h1>Hello World</h1>
+        <div className="space-y-2.5">
+            <AdminPage />
         </div>
     );
 }

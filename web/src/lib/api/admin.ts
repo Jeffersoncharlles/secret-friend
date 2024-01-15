@@ -1,31 +1,41 @@
+
 import { getCookie } from 'cookies-next'
-import { cookies } from 'next/headers'
 import { api } from './axios'
 
-export const pingAdmin = async () => {
 
+export const signUp = async (password: string) => {
   try {
-    const token = getCookie('token', {
-      cookies
-    })
-    const data = await api.post('/admin/session', {
+
+    const { data } = await api.post('/admin/session', { password })
+
+    if (data.token) {
+      return data.token
+    }
+
+  } catch (error) {
+    return error
+  }
+
+}
+
+
+
+export const getEvents = async () => {
+  try {
+
+    const token = getCookie('token')
+
+    const { data } = await api.get('admin/events', {
       headers: {
         'Authorization': `Token ${token}`
       }
     })
-
-    console.log(data.statusText)
-    if (data.status === 403) {
-      return false
+    if (data.events) {
+      return data.events
     }
 
-    return true
   } catch (error) {
-
-
-    return false
+    return error
   }
-
-
 
 }

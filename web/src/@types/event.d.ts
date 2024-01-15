@@ -1,5 +1,19 @@
 export type Event = {
-  data: {
+  data: eventRoot
+}
+
+type eventRoot = {
+  id: string
+  status: boolean
+  title: string
+  description: string
+  grouped: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export type Events = {
+  events: {
     id: string
     status: boolean
     title: string
@@ -7,5 +21,5 @@ export type Event = {
     grouped: boolean
     createdAt: string
     updatedAt: string
-  }
+  }[]
 }

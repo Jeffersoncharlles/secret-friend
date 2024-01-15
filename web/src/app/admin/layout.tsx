@@ -14,7 +14,7 @@ export default function AdminLayout({
   return (
     <div className=" mx-auto  min-h-screen w-full max-w-[1600px]  gap-5 p-8">
       <Header />
-      <main className="border border-zinc-300 p-3 ">
+      <main className=" p-3 ">
         {children}
       </main>
     </div>
